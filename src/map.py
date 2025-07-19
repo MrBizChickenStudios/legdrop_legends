@@ -28,6 +28,8 @@ class Map:
         self.npc_group = pygame.sprite.Group()
         self.visible_layers = list(self.tmx_data.visible_layers)
         self.spawn_point = (0, 0)
+        self.song_file = None
+
 
         x_offset = max((GAME_WIDTH - constants.WORLD_WIDTH) // 8, 0)
         y_offset = max((GAME_HEIGHT - constants.WORLD_HEIGHT) // 8, 0)
@@ -46,7 +48,7 @@ class Map:
             w = int(obj.width * 4)
             h = int(obj.height * 4)
             map_file = ""
-
+            song = ""
             if "spawn_point" in obj.properties:
                 self.spawn_point = (x, y)
 
@@ -56,6 +58,10 @@ class Map:
 
             if "block" in obj.properties:
                 self.obj_group.add(Block(x, y, w, h))
+
+
+            if "song_file" in obj.properties:
+                self.song_file = obj.properties["song_file"]
 
             if "door" in obj.properties:
                 map_file = obj.properties["map_file"]
@@ -68,4 +74,4 @@ class Map:
                     self.door_group.add(
                         Door(x, y, w, h, map_file, False, True)
                     )
-        return [self.tile_group, self.obj_group, self.door_group, self.spawn_point, self.npc_group]
+        return [self.tile_group, self.obj_group, self.door_group, self.spawn_point, self.npc_group, self.song_file]

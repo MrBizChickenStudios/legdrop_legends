@@ -30,16 +30,17 @@ class BaseMapState(State):
         # self.npc_group.add(Crawdaddy(), Clown(), Brother(), Nurse())
         self.camera = Camera(self.event_system)
         self.map = map.Map()
-        self.load_map("town1.tmx")
+        # self.load_map("town1.tmx")
         self.groups = [self.obj_group, self.door_group, self.npc_group, self.map_group]
         self.state_name = "world"
         self.menu = menu.Menu()
-        self.song = "town.mp3"
+        self.song_file = None
 
 
 
     def events(self, events):
         self.menu.events(events)
+
 
     def update(self):
         cam_offset = self.camera.update_offset(main_player)
@@ -66,6 +67,7 @@ class BaseMapState(State):
 
 
     def load_map(self, map_file):
-        self.map_group, self.obj_group, self.door_group, spawn_point, self.npc_group = self.map.load_map(map_file)
+        self.map_group, self.obj_group, self.door_group, spawn_point, self.npc_group, self.song_file = self.map.load_map(map_file)
         main_player.move_to_new_map(spawn_point)
+        event_system.raise_event("music_manager_play", self.song_file)
         self.groups = [self.obj_group, self.door_group, self.npc_group, self.map_group]

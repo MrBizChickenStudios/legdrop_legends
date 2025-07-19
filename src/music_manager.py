@@ -6,14 +6,15 @@ from event_system import event_system
 class MusicManager:
     def __init__(self):
         self.track = None
-        self.volume = 0.0
+        self.volume = 0.1
         pygame.mixer.init()
         event_system.on("set_volume", self.set_volume)
         event_system.on("toggle_mute", self.toggle_mute)
+        event_system.on("music_manager_play", self.play)
         self.is_muted = False
 
 
-    def play(self, file, loop=True):
+    def play(self, file=None, loop=True):
         if not file:
             return
         path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "assets/music", file)
@@ -48,3 +49,4 @@ class MusicManager:
 
         self.volume = v / 100
         pygame.mixer.music.set_volume(self.volume)
+music_manager = MusicManager()

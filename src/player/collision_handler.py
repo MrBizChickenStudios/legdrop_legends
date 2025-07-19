@@ -44,6 +44,7 @@ class CollisionHandler:
                     self.player.leaving_submap = True
                     event_system.raise_event("change_to_parent_state", None)
                     event_system.raise_event("load_map", door.map_file)
+                    
                 elif door.is_entrance:
                     self.player.in_submap = True
                     self.player.prev_cords = (

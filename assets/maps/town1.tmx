@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="44" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="44" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="32">
  <editorsettings>
   <export format="tmx"/>
  </editorsettings>
@@ -133,6 +133,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="8" name="music">
+  <object id="30" x="482.388" y="49.8507">
+   <properties>
+    <property name="song_file" value="town.mp3"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup color="#f9424d" id="3" name="Blocking">
   <object id="10" x="385.323" y="1.74129" width="64" height="46">
    <properties>
@@ -199,10 +206,10 @@
    <properties>
     <property name="door" type="bool" value="true"/>
     <property name="entrance" type="bool" value="true"/>
-    <property name="map_file" value="store.tmx"/>
+    <property name="map_file" value="legdrop_gym.tmx"/>
    </properties>
   </object>
-  <object id="8" x="264" y="54" width="16" height="2">
+  <object id="8" x="280" y="54" width="16" height="2">
    <properties>
     <property name="door" type="bool" value="true"/>
     <property name="entrance" type="bool" value="true"/>
@@ -223,6 +230,6 @@
     <property name="map_file" value="legdrop_gym.tmx"/>
    </properties>
   </object>
-  <object id="26" x="169.527" y="87.4496"/>
+  <object id="31" x="152.239" y="148.358"/>
  </objectgroup>
 </map>
