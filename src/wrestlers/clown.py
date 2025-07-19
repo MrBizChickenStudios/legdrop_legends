@@ -5,6 +5,7 @@ import objects.battle_object
 import objects.npc
 class Clown(objects.npc.NPC):
     def __init__(self, x=700, y=50):
+        self.song_file = "clown_theme.mp3"
         super().__init__(x, y, "clown_16x16-Sheet.png")
         self.battle_object = objects.battle_object.BattleObject(x, y, "clown_32x32.png", 1)
         self.battle_object.max_hp = 20

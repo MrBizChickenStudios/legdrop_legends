@@ -48,12 +48,12 @@ class StateManager():
         self.parrent_state = self.current_state
         self.transition_state.start(lambda:setattr(self, "current_state", state))
         event_system.raise_event("set_control_state", state.state_name)
-        # self.music_manager.play(state.song)
+        event_system.raise_event("music_manager_play", state.song_file)
 
     def change_to_parent_state(self, arg=None):
         self.transition_state.start(lambda:setattr(self, "current_state", self.parrent_state))
         event_system.raise_event("set_control_state", self.parrent_state.state_name)
-        # self.music_manager.play(self.parrent_state.song)
+        event_system.raise_event("music_manager_play", self.parrent_state.song_file)
 
     def change_inside_state(self):
         self.parrent_state = self.current_state

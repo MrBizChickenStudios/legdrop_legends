@@ -6,6 +6,7 @@ import objects.npc
 class Crawdaddy(objects.npc.NPC):
     def __init__(self, x=700, y=50):
         super().__init__(x, y, "craw daddy-Sheet.png")
+        self.song_file = "crawdaddy_theme.mp3"
         self.battle_object = objects.battle_object.BattleObject(x, y, "crawdaddy_32x32-Sheet.png", 20)
         self.battle_object.max_hp = 20
         self.battle_object.max_mp = 40

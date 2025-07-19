@@ -20,7 +20,6 @@ class NPCManager(object):
         pass
 
     def load(self, npc_type, x, y):
-        print(npc_type)
         npc_class = self.npcs.get(npc_type)
         if npc_class:
             return npc_class(x, y)  # instantiate the class
