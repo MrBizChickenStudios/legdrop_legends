@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="20">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="35">
  <tileset firstgid="1" name="Legdrop gym " tilewidth="16" tileheight="16" tilecount="64" columns="8">
   <image source="../images/legdropgym.png" width="128" height="128"/>
  </tileset>
+ <tileset firstgid="65" source="clinic.tsx"/>
  <layer id="1" name="Floor" width="8" height="8">
   <data encoding="csv">
 25,26,26,26,26,26,26,27,
@@ -15,16 +16,40 @@
 41,42,42,34,34,42,42,43
 </data>
  </layer>
+ <layer id="6" name="walls" width="8" height="8">
+  <data encoding="csv">
+54,55,55,55,55,55,55,56,
+62,63,63,63,63,63,63,64,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <layer id="2" name="Main" width="8" height="8">
   <data encoding="csv">
-5,5,1,2,3,4,5,5,
-8,0,9,10,11,12,0,8,
-16,0,17,18,19,20,0,16,
 0,0,0,0,0,0,0,0,
-14,15,0,0,0,0,14,15,
+23,24,13,13,13,13,23,24,
+31,32,1,2,3,4,31,32,
+0,0,9,10,11,12,0,0,
+0,0,17,18,19,20,0,0,
 0,0,0,42,42,0,0,0,
-6,0,35,28,30,33,0,0,
-6,0,43,44,46,41,0,0
+6,0,35,28,30,33,0,6,
+14,15,43,44,46,41,14,15
+</data>
+ </layer>
+ <layer id="7" name="wall tops" width="8" height="8">
+  <data encoding="csv">
+116,119,119,119,119,119,119,117,
+93,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,92,
+93,0,92,0,0,93,0,92,
+124,103,125,0,0,124,103,125
 </data>
  </layer>
  <objectgroup id="3" name="Door">
@@ -44,79 +69,71 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="Blocks">
-  <object id="1" x="2.5641" y="32.6496" width="12.4786" height="15.3846">
+  <object id="20" x="80.9524" y="125.132" width="47.619" height="1.85185">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="2" x="115.043" y="38.8034" width="10.4274" height="8.20513">
+  <object id="21" x="125.132" y="-0.26455" width="5.29101" height="134.656">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3" x="98.2906" y="68.0342" width="27.6923" height="12.1368">
+  <object id="22" x="-9.52381" y="-4.7619" width="141.005" height="35.4497">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="4" x="0.683761" y="66.4957" width="31.6239" height="12.3077">
+  <object id="23" x="-1.85185" y="30.9524" width="4.7619" height="99.4709">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5" x="4.95726" y="97.7778" width="8.20513" height="13.1624">
+  <object id="25" x="-5.29101" y="124.868" width="51.5873" height="2.6455">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="6" x="4.78632" y="113.333" width="7.52137" height="12.3077">
+  <object id="26" x="31.746" y="33.8624" width="63.7566" height="37.037">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="7" x="0.17094" y="125.812" width="45.9829" height="2.39316">
+  <object id="27" x="-44.9735" y="55.5556">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="8" x="81.3675" y="126.154" width="46.4957" height="1.7094">
+  <object id="29" x="1.0582" y="114.286" width="31.2169" height="8.46561">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="9" x="127.009" y="45.2991" width="2.22222" height="82.2222">
+  <object id="30" x="3.96825" y="97.0899" width="8.20106" height="14.2857">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="10" x="126.154" y="0.512821" width="3.93162" height="48.547">
+  <object id="31" x="115.873" y="97.3545" width="8.73016" height="14.8148">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="11" x="-1.88034" y="-1.7094" width="131.453" height="5.64103">
+  <object id="32" x="97.619" y="115.344" width="26.455" height="8.73016">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="12" x="-0.17094" y="0.34188" width="2.05128" height="127.179">
+ </objectgroup>
+ <objectgroup id="8" name="npcs">
+  <object id="33" x="17.4603" y="20">
    <properties>
-    <property name="block" type="bool" value="true"/>
+    <property name="npc_type" value="punching_bag"/>
    </properties>
   </object>
-  <object id="13" x="33.1624" y="2.73504" width="62.5641" height="43.7607">
+  <object id="34" x="112.169" y="20">
    <properties>
-    <property name="block" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="14" x="1.36752" y="17.265" width="14.359" height="29.9145">
-   <properties>
-    <property name="block" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="15" x="115.726" y="16.7521" width="9.40171" height="29.9145">
-   <properties>
-    <property name="block" type="bool" value="true"/>
+    <property name="npc_type" value="punching_bag"/>
    </properties>
   </object>
  </objectgroup>

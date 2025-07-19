@@ -3,7 +3,7 @@ from wrestlers.clown import Clown
 from wrestlers.brother import Brother
 from npcs.nurse import Nurse
 from npcs.clerk import Clerk
-
+from wrestlers.punching_bag import PunchingBag
 
 class NPCManager(object):
     def __init__(self):
@@ -13,6 +13,7 @@ class NPCManager(object):
             "brother":Brother,
             "nurse":Nurse,
             "clerk":Clerk,
+            "punching_bag":PunchingBag
         }
 
 
