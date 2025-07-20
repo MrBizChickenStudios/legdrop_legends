@@ -1,7 +1,7 @@
 from  battle import battle_calc
 from event_system import event_system
 import random
-
+import pygame
 
 class PlayerActions():
     def __init__(self, battle):
@@ -15,13 +15,13 @@ class PlayerActions():
 
     def reset(self):
         self.battle.enemy.reset()
-        self.battle.m_player.reset()
+        self.battle.current_wrestler.reset()
         event_system.raise_event("change_to_parent_state")
         event_system.raise_event("set_control_state", "world")
 
 
     def player_died(self):
-        self.battle.m_player.is_dead = True
+        self.battle.current_wrestler.is_dead = True
         event_system.raise_event("add_timer", [
             self.attack_message_delay * 2,
             lambda:self.battle.message_display.set_message("You got knocked the fuck on out!!"),
@@ -53,16 +53,16 @@ class PlayerActions():
 
     def attack(self, key):
         self.battle.is_start_of_turn = False
-        if self.battle.m_player.mp >= key["cost"]:
-            atk_dmg = battle_calc.damage(key["power"], self.battle.m_player, self.battle.enemy)
+        if self.battle.current_wrestler.mp >= key["cost"]:
+            atk_dmg = battle_calc.damage(key["power"], self.battle.current_wrestler, self.battle.enemy)
             print(atk_dmg)
-            if self.battle.m_player.miss_turn:
+            if self.battle.current_wrestler.miss_turn:
                 print("sahsjsdfj")
-                self.battle.m_player.miss_turn = False
+                self.battle.current_wrestler.miss_turn = False
                 atk_dmg[0] = atk_dmg[0] * 2.5
                 print(atk_dmg)
             self.battle.enemy.hp -= atk_dmg[0]
-            self.battle.m_player.mp -= key["cost"]
+            self.battle.current_wrestler.mp -= key["cost"]
 
             str = f"Player used {key['name']}"
             # self.battle.message_display.set_message(str)
@@ -78,7 +78,7 @@ class PlayerActions():
             else:
                 txt = f"{str} it dealt {atk_dmg[0]} damage"
             self.battle.message_display.set_message(txt)
-            self.battle.m_player.start_lunge(self.battle.enemy)
+            self.battle.current_wrestler.start_lunge(self.battle.enemy)
             self.set_enemy_turn()
             self.battle.current_menu = self.battle.parent_menu
             self.battle.index = 0
@@ -109,7 +109,7 @@ class PlayerActions():
     def restore_health(self, key):
         self.battle.is_start_of_turn = False
         self.battle.message = key["message"]
-        bo = self.battle.m_player
+        bo = self.battle.current_wrestler
         bo.hp += key["hp"]
         bo.hp = min(bo.hp, bo.max_hp)
         self.set_enemy_turn()
@@ -121,7 +121,7 @@ class PlayerActions():
         print(key)
         self.battle.is_start_of_turn = False
         self.battle.message = key["message"]
-        bo = self.battle.m_player
+        bo = self.battle.current_wrestler
         bo.mp += key["mp"]
         bo.mp = min(bo.mp, bo.max_mp)
         self.set_enemy_turn()
@@ -136,16 +136,22 @@ class PlayerActions():
         self.set_enemy_turn()
         self.set_enemy_shake()
         self.battle.message_display.set_message("Player poisoned enemy")
-        self.battle.m_player.start_lunge(self.battle.enemy)
+        self.battle.current_wrestler.start_lunge(self.battle.enemy)
 
 
     def hulk_up(self, key):
         self.battle.message_display.set_message("Player is hulking up!!!")
-        self.battle.m_player.miss_turn = True
+        self.battle.current_wrestler.miss_turn = True
         self.set_enemy_turn()
-        self.battle.m_player.start_lunge(self.battle.enemy)
+        self.battle.current_wrestler.start_lunge(self.battle.enemy)
         # self.battle.index = 0
         # self.battle.in_submenu = False
+
+    def tag_partner(self, key):
+        self.battle.switch_wrestler(self.battle.stable[key["index"]]["wrestler"].battle_object)
+        
+
+        self.set_enemy_turn()
 
 
     def action(self, key):
@@ -175,6 +181,9 @@ class PlayerActions():
                 if key["type"] == "run":
                     self.run()
 
+                if key["type"] == "tag":
+                    self.tag_partner(key)
+
 
     def run(self):
         dice = random.randint(1, self.run_dice)
@@ -196,9 +205,9 @@ class PlayerActions():
 
 
     def check_poison(self):
-        if self.battle.m_player.is_poisoned and self.battle.is_start_of_turn:
+        if self.battle.current_wrestler.is_poisoned and self.battle.is_start_of_turn:
             self.battle.is_start_of_turn = False
-            self.battle.m_player.hp -= 5
+            self.battle.current_wrestler.hp -= 5
 
             self.battle.message = "Player damaged by poison"
 

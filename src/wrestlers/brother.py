@@ -16,7 +16,9 @@ class Brother(objects.npc.NPC):
         self.battle_object.level = 1
         self.battle_object.exp = 0
         self.battle_object.powder_rate = 30
-
+        self.battle_object.is_poisoned = False
+        self.battle_object.miss_turn = False
+        self.battle_object.is_sleeping = False
         self.battle_object.speed = 50
         self.battle_object.power = 50
         self.battle_object.defense = 50

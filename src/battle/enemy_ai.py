@@ -7,9 +7,10 @@ from event_system import event_system
 class EnemyAI():
 
     def __init__(self, enemy, battle):
-        self.player_bo = main_player.get_current_wrestler().battle_object
+
         self.enemy = enemy
         self.battle = battle
+        self.player_bo = battle.current_wrestler
         self.message_display = battle.message_display
         self.attacks = self.enemy.options["Attacks"]
         self.attack_message_delay = 2000
@@ -20,8 +21,8 @@ class EnemyAI():
 
 
     def update(self):
-        pass
-
+        self.player_bo = self.battle.current_wrestler
+        print(self.player_bo.name)
 
 
     def attack(self):

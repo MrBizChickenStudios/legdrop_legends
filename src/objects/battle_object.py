@@ -68,6 +68,7 @@ class BattleObject(MainEntity):
 
     def start_lunge(self, target):
         if not self.is_lunging:
+            self.orginal_pos_rect = self.rect.copy()
             self.is_lunging = True
             self.lunge_forward = True
             self.lunge_offset = 0
